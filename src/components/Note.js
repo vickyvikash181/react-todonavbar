@@ -10,7 +10,7 @@ function Note(props) {
     <div className="note">
      
       <p>{props.content}</p>
-      <p>{props.important}</p>
+      
       <button onClick={handleClick}>DELETE</button>
       
     </div>

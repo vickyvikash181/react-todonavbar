@@ -1,45 +1,68 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+
 import './App.css';
 import Navbar from './components/navbar';
 import Toggle from './components/Toggle';
 import NestedList from './components/NestedList';
 import CreateArea from './components/CreateArea';
 import Users from './components/Users';
+import axios from 'axios';
+import NoteTimeline from './NoteTimeline';
 
 import Note from './components/Note';
+// import { render } from 'jade';
 
 
 
 function App() {
- 
-  const [notes, setNotes] = useState([]);
-  
+
+
+  const [notes, getNotes] = useState('');
+  const url = 'http://localhost:3000/users';
+  useEffect(() => {
+    getAllNotes();
+  }, []);
+// console.log("abcdef");
+  const getAllNotes = () => {
+    axios.get(url)
+    
+      .then((response) => {
+        console.log(response);
+        // console.log("vickyvikash");
+        
+        const allNotes = response.data.notes.allNotes;
+        getNotes(allNotes);
+      })
+      .catch(error => console.error((error)));
+  }
+
+  return (
+
+    <NoteTimeline notes={notes} />
+  )
+
+
   function addNote(newNote) {
-   
-    
+
+
     console.log("vickyabc");
-    setNotes(prevNotes => {
-    
+    getNotes(prevNotes => {
+
       var jsonData = {
-        
-        
-          
-       
-        "title":newNote,
-        "description":newNote
+        "title": newNote,
+        "description": newNote
         // "title": "this is my title",
         // "description": "this is my description"
-       
+
       }
-    
+
       console.log("before post");
       console.log(JSON.stringify(jsonData));
-     
+
       // Send data to the backend via POST
-      
-      fetch("http://localhost:3000/users/",  {  // Enter your IP address here
-      method: 'POST',
+
+      fetch("http://localhost:3000/users/", {  // Enter your IP address here
+        method: 'POST',
 
         mode: 'cors',
         headers: { 'Content-Type': 'application/json' },
@@ -53,48 +76,58 @@ function App() {
       //   }
       // });
       return [...prevNotes, newNote];
+
     });
   }
-
+ 
   function deleteNote(id) {
-    setNotes(prevNotes => {
+  
+    getNotes(prevNotes => {
       return prevNotes.filter((noteItem, index) => {
         return index !== id;
       });
     });
   }
-  const [issidebaropen, setsidebaropen] = useState(true)
-  console.log("vicky");
-  function togglesidebar() {
-    setsidebaropen(prevstate => {
-      console.log("clicked here");
-      return !prevstate;
-    })
+  
 
-  }
-  return (
-    <div className="App">
-      <Navbar />
-      <Toggle handleclick={togglesidebar} />
-      <NestedList issidebaropen={issidebaropen} />
-      <CreateArea onAdd={addNote} />
-      <Users />
+    const [issidebaropen, setsidebaropen] = useState(true)
+    function togglesidebar() {
+      setsidebaropen(prevstate => {
+        console.log("clicked here");
+        return !prevstate;
+      })
+    
+    }
+
+  
+    return (
+
+      <div className="App">
+        <Navbar />
+        <Toggle handleclick={togglesidebar} />
+        <NestedList issidebaropen={issidebaropen} />
+        <CreateArea onAdd={addNote} />
+        <Users />
+
+
+        <combined />
+    
+        {notes.map((noteItem, index) => {
+          return (
+            <Note
+              key={index}
+              id={index}
+              title={noteItem.title}
+              content={noteItem.content}
+              onDelete={deleteNote}
+            />
+          );
+        })}
+      </div>
+    );
       
-      <combined />
-      
-      {notes.map((noteItem, index) => {
-        return (
-          <Note
-            key={index}
-            id={index}
-            title={noteItem.title}
-            content={noteItem.content}
-            onDelete={deleteNote}
-          />
-        );
-      })}
-    </div>
-  );
+    
+  
 }
 
-export default App;
+     export default App;
