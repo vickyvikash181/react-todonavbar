@@ -5,42 +5,37 @@ import Navbar from './components/navbar';
 import Toggle from './components/Toggle';
 import NestedList from './components/NestedList';
 import CreateArea from './components/CreateArea';
-import Users from './components/Users';
+
 import axios from 'axios';
 import NoteTimeline from './NoteTimeline';
-
+ 
 import Note from './components/Note';
 // import { render } from 'jade';
+// import { render } from 'jade';
 
-
-
-function App() {
-
-
+export default function App() {
+  console.log("vickyvhb b");
   const [notes, getNotes] = useState('');
   const url = 'http://localhost:3000/users';
   useEffect(() => {
     getAllNotes();
   }, []);
-// console.log("abcdef");
+  // console.log("abcdef");
   const getAllNotes = () => {
     axios.get(url)
-    
+
       .then((response) => {
         console.log(response);
         // console.log("vickyvikash");
-        
-        const allNotes = response.data.notes.allNotes;
+
+        const allNotes = response.data;
+
         getNotes(allNotes);
       })
       .catch(error => console.error((error)));
   }
 
-  return (
-
-    <NoteTimeline notes={notes} />
-  )
-
+console.log("cvfgyu8hbvbhj");
 
   function addNote(newNote) {
 
@@ -79,55 +74,86 @@ function App() {
 
     });
   }
- 
+
   function deleteNote(id) {
-  
+    console.log("aaaaaabbbbb");
+
     getNotes(prevNotes => {
       return prevNotes.filter((noteItem, index) => {
-        return index !== id;
+        return noteItem.id !== id;
+        // return index !== id;
       });
     });
   }
+
+  const [issidebaropen, setsidebaropen] = useState(true)
+  function togglesidebar() {
+    setsidebaropen(prevstate => {
+      console.log("clicked here");
+      return !prevstate;
+    })
+  }
+  // <Navbar />
+    // <Toggle handleclick={togglesidebar} />
+    // <NestedList issidebaropen={issidebaropen} />
+    // <CreateArea onAdd={addNote} />
+    // <NoteTimeline notes={notes} />
+   
   
-
-    const [issidebaropen, setsidebaropen] = useState(true)
-    function togglesidebar() {
-      setsidebaropen(prevstate => {
-        console.log("clicked here");
-        return !prevstate;
-      })
+    // <combined />
+      
     
-    }
-
-  
-    return (
-
-      <div className="App">
-        <Navbar />
-        <Toggle handleclick={togglesidebar} />
-        <NestedList issidebaropen={issidebaropen} />
-        <CreateArea onAdd={addNote} />
-        <Users />
-
-
-        <combined />
+    //   {notes.map((noteItem, index) => {
+    //     console.log("hello");
+    //     return (
     
-        {notes.map((noteItem, index) => {
+
+    //       <Note
+    //         key={index}
+    //         id={index}
+    //         title={noteItem.title}
+    //         content={noteItem.content}
+    //         onDelete={deleteNote}
+    //       />
+    //     );
+    //   })}
+    // {notes.map((noteItem, index) => {
+      console.log(notes);
+console.log("apple");
+// {notes.map((noteItem, index) => {
+  return  (
+    
+    <div className="App">
+    <Navbar />
+    <Toggle handleclick={togglesidebar} />
+    <NestedList issidebaropen={issidebaropen} />
+    <CreateArea onAdd={addNote} />
+    <NoteTimeline notes={notes} />
+
+    
+      {[...notes].reverse().map((noteItem, index) => {
+          console.log(noteItem, index);
           return (
+      
+  
             <Note
               key={index}
-              id={index}
+              id={noteItem.id} 
+              // id={index}
               title={noteItem.title}
               content={noteItem.content}
               onDelete={deleteNote}
             />
           );
         })}
-      </div>
-    );
-      
-    
-  
+    </div>
+  );
+
+
+
 }
 
-     export default App;
+
+
+// export default App;
+

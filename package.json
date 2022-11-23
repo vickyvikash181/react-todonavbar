@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "eslint-plugin-react-hooks": "^4.6.0",
     "react-error-overlay": "^6.0.9"
   }
 }
