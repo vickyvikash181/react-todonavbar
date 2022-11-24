@@ -14,6 +14,7 @@ import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
 import ListItemButton from '@mui/material/ListItemButton';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import App from '../App';
 
   
 
@@ -44,8 +45,7 @@ export default function EnableColorOnDarkAppBar(props) {
     const year = d.getFullYear()
     const today = day + ", " + month + " " + year
     return (
-        
-
+      
                         <Stack spacing={2} sx={{ flexGrow: 1 }}>
                             <ThemeProvider theme={lightTheme}>
                                 <AppBar position="static" color="primary" enableColorOnDark>
@@ -57,7 +57,7 @@ export default function EnableColorOnDarkAppBar(props) {
 
                                                         <MenuIcon />
 
-
+                                                         <App />               
 
 
                                                     </IconButton>
