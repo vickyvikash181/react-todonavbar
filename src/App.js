@@ -14,10 +14,6 @@ import Note from './components/Note';
 // import { render } from 'jade';
 
 export default function App() {
-
-  
-    const data= "Data"
-  
   console.log("vickyvhb b");
   const [notes, getNotes] = useState('');
   const url = 'http://localhost:3000/users';
@@ -97,16 +93,41 @@ console.log("cvfgyu8hbvbhj");
       return !prevstate;
     })
   }
-
+  // <Navbar />
+    // <Toggle handleclick={togglesidebar} />
+    // <NestedList issidebaropen={issidebaropen} />
+    // <CreateArea onAdd={addNote} />
+    // <NoteTimeline notes={notes} />
+   
   
+    // <combined />
+      
+    
+    //   {notes.map((noteItem, index) => {
+    //     console.log("hello");
+    //     return (
+    
 
+    //       <Note
+    //         key={index}
+    //         id={index}
+    //         title={noteItem.title}
+    //         content={noteItem.content}
+    //         onDelete={deleteNote}
+    //       />
+    //     );
+    //   })}
+    // {notes.map((noteItem, index) => {
+      console.log(notes);
+console.log("apple");
+// {notes.map((noteItem, index) => {
   return  (
     
     <div className="App">
     <Navbar />
     <Toggle handleclick={togglesidebar} />
     <NestedList issidebaropen={issidebaropen} />
-    <CreateArea onAdd={addNote}  person={data}/>
+    <CreateArea onAdd={addNote} />
     <NoteTimeline notes={notes} />
 
     
@@ -127,10 +148,12 @@ console.log("cvfgyu8hbvbhj");
         })}
     </div>
   );
-      
+
 
 
 }
 
 
+
+// export default App;
 

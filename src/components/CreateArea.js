@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
 
-function CreateArea(props)  {
+function CreateArea(props) {
   const [note, setNote] = useState({
     
     content: ""
@@ -32,14 +32,16 @@ function CreateArea(props)  {
       content: ""
     });
     event.preventDefault();
-    
   }
+  
+
+    
+    
   
 
   return (
     
       <div>
-      <h1>{props.person}</h1>
       <form>
       <Box sx={{ width: '100%' }}>
       <Stack spacing={2}>
@@ -54,7 +56,7 @@ function CreateArea(props)  {
      </Stack>
       </Box>
         
-        <button onClick={submitNote}>Add</button>
+        <button onClick={submitNote}>Add 1</button>
         
       </form>
     </div>
