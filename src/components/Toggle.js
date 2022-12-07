@@ -34,9 +34,11 @@ const lightTheme = createTheme({
   
 
 export default function EnableColorOnDarkAppBar(props) {
+   
+    
     const d = new Date()
     const weekDay = ['Sun', 'Mon', 'Tues', 'Wed', 'Thrus', 'Fri', 'Sat'];
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Ddec'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
     const day = weekDay[d.getDay()]
     const month = months[d.getMonth()]
@@ -96,5 +98,6 @@ export default function EnableColorOnDarkAppBar(props) {
                     
 
     );
+    
 
 }

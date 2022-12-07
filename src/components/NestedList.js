@@ -32,6 +32,7 @@ export default function NestedList(props) {
 
 
   if (props.issidebaropen) {
+    if (props.ismainbaropen) {
     const Item = styled(Paper)(({ theme }) => ({
       backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
       ...theme.typography.body2,
@@ -39,7 +40,7 @@ export default function NestedList(props) {
       textAlign: 'center',
       color: theme.palette.text.secondary,
     }));
-
+  
 
     return (
 
@@ -50,10 +51,10 @@ export default function NestedList(props) {
 
 
       <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
-          <Grid xs={12} md={5} lg={4}>
+        <Grid container spacing={10}>
+          <Grid xs={12} md={10} lg={10}>
             <Item><List
-              sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+              sx={{ width: '100%', maxWidth: 360,bgcolor: 'background.paper'  }}
               component="nav"
               aria-labelledby="nested-list-subheader"
               subheader={
@@ -61,7 +62,8 @@ export default function NestedList(props) {
 
                 </ListSubheader>
               }
-             >  <ListItemButton>
+             >  
+            <ListItemButton>
                 <ListItemIcon>
                   <LightModeIcon />
                 </ListItemIcon>
@@ -92,15 +94,17 @@ export default function NestedList(props) {
                 <ListItemText primary="Tasks" />
               </ListItemButton>
 
+              
 
-
-              <MailIcon />
-              <CalendarMonthIcon />
-              <PeopleIcon />
-              <AttachFileIcon />
-              <DoneIcon />
+              
              </List>
-
+             <Grid sx={{ order: { xs: 2, sm: 4} }}>
+             <Item><MailIcon />
+             <CalendarMonthIcon />
+             <PeopleIcon />
+             <AttachFileIcon />
+             <DoneIcon /></Item>
+           </Grid>
 
 
 
@@ -112,5 +116,5 @@ export default function NestedList(props) {
        </Box>
        );
       }
-
+  }
        }

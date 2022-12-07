@@ -10,10 +10,11 @@ import axios from 'axios';
 import NoteTimeline from './NoteTimeline';
  
 import Note from './components/Note';
-// import { render } from 'jade';
-// import { render } from 'jade';
-
+import Grid from '@mui/material/Unstable_Grid2';
+// import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 export default function App() {
+
+
   console.log("vickyvhb b");
   const [notes, getNotes] = useState('');
   const url = 'http://localhost:3000/users';
@@ -93,41 +94,30 @@ console.log("cvfgyu8hbvbhj");
       return !prevstate;
     })
   }
-  // <Navbar />
-    // <Toggle handleclick={togglesidebar} />
-    // <NestedList issidebaropen={issidebaropen} />
-    // <CreateArea onAdd={addNote} />
-    // <NoteTimeline notes={notes} />
-   
-  
-    // <combined />
-      
-    
-    //   {notes.map((noteItem, index) => {
-    //     console.log("hello");
-    //     return (
-    
 
-    //       <Note
-    //         key={index}
-    //         id={index}
-    //         title={noteItem.title}
-    //         content={noteItem.content}
-    //         onDelete={deleteNote}
-    //       />
-    //     );
-    //   })}
-    // {notes.map((noteItem, index) => {
+  const [ismainbaropen, setmainbaropen] = useState(true)
+  function Nestedmainbar() {
+    setmainbaropen(prevstate => {
+      console.log("clicked here");
+      return !prevstate;
+    })
+  }
+
+
+
       console.log(notes);
 console.log("apple");
-// {notes.map((noteItem, index) => {
+
   return  (
     
     <div className="App">
     <Navbar />
     <Toggle handleclick={togglesidebar} />
-    <NestedList issidebaropen={issidebaropen} />
-    <CreateArea onAdd={addNote} />
+    <Grid container spacing={2}>
+  <Grid xs={issidebaropen?3:0}>
+    <NestedList issidebaropen={issidebaropen} ismainbaropen={ismainbaropen}/></Grid>
+    <Grid xs={issidebaropen?9:12}>
+    <CreateArea onAdd={addNote}  />
     <NoteTimeline notes={notes} />
 
     
@@ -146,14 +136,16 @@ console.log("apple");
             />
           );
         })}
+  </Grid>
+  </Grid>
+
     </div>
   );
-
 
 
 }
 
 
 
-// export default App;
+
 

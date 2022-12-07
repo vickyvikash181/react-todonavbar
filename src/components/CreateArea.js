@@ -3,6 +3,11 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import GradeIcon from '@mui/icons-material/Grade';
+import ListItemButton from '@mui/material/ListItemButton';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import { List } from "@mui/material";
+
 
 
 function CreateArea(props) {
@@ -40,23 +45,35 @@ function CreateArea(props) {
   
 
   return (
+   
     
       <div>
+      
       <form>
+      
       <Box sx={{ width: '100%' }}>
-      <Stack spacing={2}>
+      <Stack spacing={0}>
+      
+      
       <textarea
       name="content"
       onChange={handleChange}
       value={note.content}
       
       placeholder="Add a task..."
-      rows="3"
+      rows="3" 
+     
       />
+      <List>
+      <LightModeIcon   />
+       
+      <GradeIcon />
+      </List>
      </Stack>
       </Box>
-        
-        <button onClick={submitNote}>Add 1</button>
+     
+        <button onClick={submitNote}>Add </button>
+      
         
       </form>
     </div>

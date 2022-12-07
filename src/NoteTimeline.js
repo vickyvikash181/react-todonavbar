@@ -16,7 +16,7 @@ import React from "react";
                 })
             )
         }else {
-            return(<h3> No notes yet</h3>)
+            return(<h3>no notes</h3>)
         }
     }
 return(
